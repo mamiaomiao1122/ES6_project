@@ -1,37 +1,42 @@
-//proxy代理，中间层
-//reflect反射
+//proxy代理（中间层）
+//reflect反射（object）
 //俩者方法一样
+
 {
-	let obj = {   //供应商
+	let obj = {   //供应商，原始对象（存储数据）
 		time:'2018-04-01',
 		name:'net',
 		_r:123
 	};
 
-	let monitor = new Proxy(obj,{
+	let monitor = new Proxy(obj,{  //创建代理对象，新对象
+		
 		//拦截对象属性的读取
 		get(target,key){
 			return target[key].replace('2018','2019')
 		},
+
 		//拦截对象设置属性
 		set(target,key,value){
-			if(key  === 'name'){
+			if(key  === 'name'){  //只允许修改name
 				return target[key] = value;
 			}else{
 				return target[key];
 			}
 		},
+		
 		//拦截key in object操作
 		has(target,key){
-			if(key === 'name'){
+			if(key === 'name'){  //只暴露name属性
 				return target[key];
 			}else{
 				return false;
 			}
 		},
+
 		//拦截delete
 		deleteProperty(target,key){
-			if(key.indexOf('_')>-1){
+			if(key.indexOf('_')>-1){ //属性下划线开头的可以删除，其他不允许删除，返回当前值
 				delete target[key];
 				return true
 			}else{
@@ -44,18 +49,22 @@
 		}
 	});
 	console.log('get',monitor.time);//2019-04-01
-	monitor.time='2018';
+	monitor.time='2018';   //用户可以直接访问的monitor对象
 	console.log('set',monitor.time);//2019-04-01  不能修改
+
 	monitor.name='mamiao';
 	console.log('set',monitor.name);//mamiao
 
 	console.log('has','name' in monitor,'time' in monitor)  //true false
 	console.log('ownKeys',Object.keys(monitor));
+
 	delete monitor.time;
 	console.log('delete',monitor);//未删除
 
 	delete monitor._r;
-	console.log('delete',monitor);//删除了
+	console.log('delete',monitor);//删除了_r
+
+	console.log('ownKeys',Object.keys(monitor))//只会显示name  _r
 	
 }
 
@@ -91,7 +100,7 @@
 			}
 		})
 	}
-	const personValid={   //校验的条件
+	const personValid={   //校验的条件，过滤选项
 		name(val){
 			return typeof val==='string'
 		},
@@ -103,12 +112,13 @@
 		constructor(name,age){
 			this.name =name;
 			this.age=age;
-			return validator(this,personValid)  //返回proxy对象,
+			return validator(this,personValid)  //返回proxy对象,代替了Person
 		}
 	}
 	const person = new Person('mamiao',18);
 	console.log(person); //Proxy {name: "mamiao", age: 18}
-	// person.name=12;//报错
+	// person.name=12;//报错:不能设置;;是字符串
+	person.name="zhoujielun";
 	person.age=22;//不可修改
 }
 

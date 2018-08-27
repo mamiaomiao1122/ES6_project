@@ -29,7 +29,7 @@
 	};
 	ajax(function(){
 		console.log('setTimeout1')
-	})
+	})// zz  setTimeout1
 }
 
 {

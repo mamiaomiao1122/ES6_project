@@ -1,6 +1,6 @@
 //es5  object  array
 //新增set  map 
-//建议：优先使用map；如果对数据要求较高（唯一性）考虑使用set；放弃使用object和数组做存储
+//建议：1.优先使用map；2.如果对数据要求较高（唯一性）考虑使用set；3.放弃使用object和数组做存储
 {
 	//map和array的对比
 	let map = new Map();
@@ -83,10 +83,10 @@
 
 	// 改
 	map.set('t',2);
-	item.t=2; //forEach()
+	item.t=2; //forEach()  set直接修改参数中对象的引用（）本身
 	obj['t']=2;
 	console.log('map-set-object-modify',obj,map,set);
-	
+
 	// 删
 	map.delete('t');
 	set.delete(item);

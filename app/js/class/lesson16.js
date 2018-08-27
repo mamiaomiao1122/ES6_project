@@ -4,7 +4,7 @@
 
 {
 	//基本定义
-	let tell = function* (){
+	let tell = function* (){ //generator函数
 		yield 'a';
 		yield 'b';
 		return 'c'
@@ -45,9 +45,9 @@
 // 	//和上面的一样的结果  但需要安装babel的插件
 // 	let state =async function (){
 // 		while(1){
-// 			yield 's';
-// 			yield 'd';
-// 			yield 'v';
+// 			await 's';
+// 			await 'd';
+// 			await 'v';
 // 		}
 // 	}
 // 	let status = state();

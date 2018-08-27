@@ -9,12 +9,12 @@
 			this.name = name;
 		}
 	}
-	let v_parent = new Parent('v');
+	let v_parent = new Parent('v'); 
 	console.log('constructor',v_parent)
 }
 
 {
-	//继承
+	// 继承
 	class Parent{
 		constructor(name="parent"){
 			this.name = name;

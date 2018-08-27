@@ -1,7 +1,8 @@
-//iterator   for...of
+
+//iterator接口   for...of
 
 {
-	let arr =['hello','world'];
+	let arr = ['hello','world'];
 	let map = arr[Symbol.iterator]();
 	console.log(map.next());
 	console.log(map.next());
