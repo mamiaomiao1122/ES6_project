@@ -1,5 +1,5 @@
 //数据结构
-//set-map
+//set-map-weakSet-weakMap
 
 {
 	//set集合元素不能重复，是唯一的
@@ -52,16 +52,17 @@
 	}
 	list.forEach(function(item){console.log(item);})
 }
-//weakSet  没有size等属性 clear方法  不能遍历
+//weakSet  1.没有size等属性 2.没有clear方法  3.不能遍历
 {
-	let weakList = new WeakSet();//1,只能必须是对象；2,对象是弱引用 不会和垃圾回收机制没关系
+	let weakList = new WeakSet();//1,只能必须是对象；2,对象是弱引用 不会检测是否回收，和垃圾回收机制没关系
 	let arg = {};
 	weakList.add(arg);
-	//weakList.add(2);  错误 只能是对象
+	//weakList.add(2);  错误 只能是对象的数据类型
 	console.log(weakList);
 }
 
 
+//map定义
 {
 	let map = new Map();
 	let arr = ["123"];
@@ -80,9 +81,10 @@
 //map与set遍历是一样的
 
 {
-	let weakmap = new WeakMap();//接受对象 没有size clear 不能遍历
+	//只接受对象 1.没有size属性 2.没有clear方法 3.不能遍历
+	let weakmap = new WeakMap();
 	let o ={};
-	weakmap.set(o,123);
+	weakmap.set(o,123);//接受的一定是对象
 	console.log(weakmap.get(o)); //123
 
 }
