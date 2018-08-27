@@ -7,7 +7,7 @@
 
 
 {
-	//限制属性只读
+	//限制属性只读   readonly函数
 	let readonly = function(target,name,descriptor){
 		descriptor.writable = false;
 		return descriptor
@@ -29,9 +29,9 @@
 {
 
 	let typename = function(target,name,descriptor){
-		target.myname = 'hello';//静态属性
+		target.myname = 'hello';//增加静态属性
 	};
-	@typename
+	@typename  //在class前面，也可表示对类Test的修饰
 	class Test{
 		 
 	}

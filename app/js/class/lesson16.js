@@ -61,7 +61,7 @@
 		console.log(`剩余${count}次`)
 	}
 	let reside = function* (count){
-		while(count>0){
+		while(count>0){     //不需要全局变量
 			count--;
 			yield draw(count);
 		}
@@ -79,11 +79,11 @@
 }
 
 {
-	//定时取状态  长轮询
+	//定时取状态  长轮询/websocket
 	let ajax = function* (){
 		yield new Promise(function(resolve,reject){
 			setTimeout(function() {
-				resolve({code:0})
+				resolve({code:0}) //服务端的数据
 			}, 10);
 		})
 	}
