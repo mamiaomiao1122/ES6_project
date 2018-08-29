@@ -12,7 +12,7 @@
 // 		console.log("class");
 // 	}
 // }
-
+//最好的形式
 let A = 123;
 let test = function(){
 	console.log("test");
